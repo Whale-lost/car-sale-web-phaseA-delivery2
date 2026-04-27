@@ -1,233 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Car Sales Platform</title>
-<style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:Arial; }
+    <meta charset="UTF-8">
+    <title>Car Sales Platform</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial;
+        }
 
-body {
-  min-width:1200px;
-  background: linear-gradient(135deg, #0f192f 0%, #1a2a4d 50%, #111827 100%);
-  background-image: 
-    radial-gradient(circle, rgba(79,209,199,0.05) 1px, transparent 1px),
-    linear-gradient(135deg, #0f192f 0%, #1a2a4d 50%, #111827 100%);
-  background-size: 30px 30px, 100% 100%;
-  background-attachment: fixed;
-  scroll-behavior: smooth;
-}
+        /* 页面主体样式 */
+        body {
+            min-width: 1200px;
+            background: linear-gradient(135deg, #0f192f 0%, #1a2a4d 50%, #111827 100%);
+            background-image:
+                radial-gradient(circle, rgba(79,209,199,0.05) 1px, transparent 1px),
+                linear-gradient(135deg, #0f192f 0%, #1a2a4d 50%, #111827 100%);
+            background-size: 30px 30px, 100% 100%;
+            background-attachment: fixed;
+            scroll-behavior: smooth;
+        }
 
-.nav {
-    width:100%; height:70px; background:#121e3d;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 60px;
-    position:fixed; top:0; z-index:999;
-    transition: 0.3s;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
+        /* 导航栏样式 */
+        .nav {
+            width: 100%;
+            height: 70px;
+            background: #121e3d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
 
-.logo-box {
-    display:flex;
-    align-items:center;
-    gap:16px;
-}
+        /* Logo 容器 */
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
 
-.creative-logo {
-    width:42px;
-    height:42px;
-    position:relative;
-    background:linear-gradient(135deg, #00aaff, #4fd1c7, #00ffcc);
-    border-radius:12px;
-    transform:rotate(45deg);
-    box-shadow:0 0 20px rgba(79,209,199,0.5);
-    display:flex; align-items:center; justify-content:center;
-    transition:all 0.3s ease;
-}
-.creative-logo::before {
-    content:"";
-    width:18px;
-    height:18px;
-    border:3px solid #fff;
-    border-radius:50%;
-    position:absolute;
-    box-sizing:border-box;
-}
-.creative-logo::after {
-    content:"";
-    width:6px;
-    height:22px;
-    background:#fff;
-    border-radius:2px;
-    position:absolute;
-}
+        /* 创意Logo图标 */
+        .creative-logo {
+            width: 42px;
+            height: 42px;
+            position: relative;
+            background: linear-gradient(135deg, #00aaff, #4fd1c7, #00ffcc);
+            border-radius: 12px;
+            transform: rotate(45deg);
+            box-shadow: 0 0 20px rgba(79,209,199,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
 
-.logo-text {
-    font-size:26px;
-    font-weight:800;
-    background:linear-gradient(90deg, #ffffff, #4fd1c7, #00aaff, #00ffcc);
-    -webkit-background-clip:text;
-    color:transparent;
-    letter-spacing:1px;
-}
-.logo-slogan {
-    font-size:12px;
-    color:#a0b4d8;
-    letter-spacing:1px;
-}
+        .creative-logo::before {
+            content: "";
+            width: 18px;
+            height: 18px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            position: absolute;
+            box-sizing: border-box;
+        }
 
-.logo-box:hover {
-    transform:scale(1.06);
-    filter:brightness(1.4);
-    cursor:pointer;
-    transition:all 0.3s ease;
-}
-.logo-box:hover .creative-logo {
-    transform:rotate(225deg);
-}
+        .creative-logo::after {
+            content: "";
+            width: 6px;
+            height: 22px;
+            background: #fff;
+            border-radius: 2px;
+            position: absolute;
+        }
 
-.menu a {
-    color:white; text-decoration:none; margin-left:35px; font-size:16px;
-}
-.menu a:hover { color:#4fd1c7; }
+        /* Logo文字 */
+        .logo-text {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ffffff, #4fd1c7, #00aaff, #00ffcc);
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
 
-.banner {
-    width:100%; height:450px;
-    margin-top:70px;
-    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url('https://picsum.photos/id/1071/1600/900');
-    background-size:cover;
-    background-position:center;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    color:white; text-align:center;
-    position:relative;
-    overflow:hidden;
-}
+        .logo-slogan {
+            font-size: 12px;
+            color: #a0b4d8;
+            letter-spacing: 1px;
+        }
 
-.banner h1 {
-    font-size:46px;
-    margin-bottom:15px;
-    background:linear-gradient(90deg, #fff, #4fd1c7);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-.banner p { font-size:18px; width:700px; line-height:1.6; }
+        /* Logo hover效果 */
+        .logo-box:hover {
+            transform: scale(1.06);
+            filter: brightness(1.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-/* 整体上移，减少空白 */
-.company { width:1200px; margin:15px auto; text-align:center; }
-.company p { font-size:16px; color:#e0e0e0; line-height:1.7; text-align:justify; }
+        .logo-box:hover .creative-logo {
+            transform: rotate(225deg);
+        }
 
-.box-wrap { width:1200px; margin:15px auto 40px; display:flex; justify-content:space-between; }
-.box { 
-    width:270px; background:#1a2337; padding:25px; border-radius:14px; 
-    box-shadow:0 4px 12px rgba(0,0,0,0.25); text-align:center;
-    transition:all 0.4s ease;
-    position:relative;
-    overflow:hidden;
-}
-.box::before {
-    content:"";
-    position:absolute;
-    top:0; left:-100%;
-    width:100%; height:100%;
-    background:linear-gradient(90deg, transparent, rgba(79,209,199,0.05), transparent);
-    transition:0.5s;
-}
-.box:hover::before { left:100%; }
+        /* 导航菜单 */
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin-left: 35px;
+            font-size: 16px;
+        }
 
-.box h3 { color:#4fd1c7; margin-bottom:10px; font-size:19px; }
-.box p { color:#c0c8d8; font-size:15px; line-height:1.5; }
+        .menu a:hover {
+            color: #4fd1c7;
+        }
 
-.box:hover {
-    background-color:#253558;
-    transform:translateY(-8px);
-    box-shadow:0 0 25px rgba(79,209,199,0.3);
-}
-.box:hover h3 {
-    color:#ffffff;
-}
+        /* 横幅区域 */
+        .banner {
+            width: 100%;
+            height: 450px;
+            margin-top: 70px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://picsum.photos/id/1071/1600/900');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-.footer {
-    width:100%;
-    padding:25px 0;
-    background:#121e3d;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:8px;
-    border-top:1px solid #2a3a5a;
-}
-.footer .logo-box {
-    transform:scale(0.75);
-}
-.footer p {
-    font-size:14px;
-    color:#a0b4d8;
-}
-</style>
+        .banner h1 {
+            font-size: 46px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #fff, #4fd1c7);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .banner p {
+            font-size: 18px;
+            width: 700px;
+            line-height: 1.6;
+        }
+
+        /* 公司介绍 */
+        .company {
+            width: 1200px;
+            margin: 15px auto;
+            text-align: center;
+        }
+
+        .company p {
+            font-size: 16px;
+            color: #e0e0e0;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* 功能卡片容器 */
+        .box-wrap {
+            width: 1200px;
+            margin: 15px auto 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* 功能卡片 */
+        .box {
+            width: 270px;
+            background: #1a2337;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79,209,199,0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .box:hover::before {
+            left: 100%;
+        }
+
+        .box h3 {
+            color: #4fd1c7;
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .box p {
+            color: #c0c8d8;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* 卡片hover效果 */
+        .box:hover {
+            background-color: #253558;
+            transform: translateY(-8px);
+            box-shadow: 0 0 25px rgba(79,209,199,0.3);
+        }
+
+        .box:hover h3 {
+            color: #ffffff;
+        }
+
+        /* 页脚样式 */
+        .footer {
+            width: 100%;
+            padding: 25px 0;
+            background: #121e3d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid #2a3a5a;
+        }
+
+        .footer .logo-box {
+            transform: scale(0.75);
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #a0b4d8;
+        }
+    </style>
 </head>
 <body>
+    <!-- 顶部导航栏 -->
+    <div class="nav">
+        <div class="logo-box">
+            <div class="creative-logo"></div>
+            <div>
+                <div class="logo-text">Car Sales Platform</div>
+                <div class="logo-slogan">INTELLIGENT AUTO TRADING</div>
+            </div>
+        </div>
 
-<div class="nav">
-    <div class="logo-box">
-        <div class="creative-logo"></div>
-        <div>
-            <div class="logo-text">Car Sales Platform</div>
-            <div class="logo-slogan">INTELLIGENT AUTO TRADING</div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="register.html">Register</a>
+            <a href="login.html">Login</a>
+            <a href="addcar.html">Publish Car</a>
+            <a href="search.html">Search</a>
         </div>
     </div>
 
-    <div class="menu">
-        <a href="index.html">Home</a>
-        <a href="register.html">Register</a>
-        <a href="login.html">Login</a>
-        <a href="addcar.html">Publish Car</a>
-        <a href="search.html">Search</a>
+    <!-- 横幅区域 -->
+    <div class="banner">
+        <h1>Professional Used Car Trading Platform</h1>
+        <p>Safe, transparent, and efficient used car buying and selling service. Sellers can publish vehicles, buyers can search for ideal cars easily.</p>
     </div>
-</div>
 
-<div class="banner">
-    <h1>Professional Used Car Trading Platform</h1>
-    <p>Safe, transparent, and efficient used car buying and selling service. Sellers can publish vehicles, buyers can search for ideal cars easily.</p>
-</div>
+    <!-- 平台介绍 -->
+    <div class="company">
+        <p>Our platform is a professional used car trading website for buyers and sellers. We provide safe, standardized services for second-hand car transactions. Sellers can register, log in, publish real used car information. Buyers search vehicles by model, year and view details. We provide a transparent, secure and convenient trading environment.</p>
+    </div>
 
-<!-- 已删除4张汽车图片 -->
-
-<div class="company">
-    <p>Our platform is a professional used car trading website for buyers and sellers. We provide safe, standardized services for second-hand car transactions. Sellers can register, log in, publish real used car information. Buyers search vehicles by model, year and view details. We provide a transparent, secure and convenient trading environment.</p>
-</div>
-
-<div class="box-wrap">
-    <div class="box"><h3>Seller Register</h3><p>Validated registration to ensure account security.</p></div>
-    <div class="box"><h3>Account Login</h3><p>Secure login to manage your car listings.</p></div>
-    <div class="box"><h3>Publish Car</h3><p>Upload car details, images and price online.</p></div>
-    <div class="box"><h3>Search Car</h3><p>Quickly find ideal used cars by keywords.</p></div>
-</div>
-
-<div class="footer">
-    <div class="logo-box">
-        <div class="creative-logo"></div>
-        <div>
-            <div class="logo-text">Car Sales Platform</div>
-            <div class="logo-slogan">INTELLIGENT AUTO TRADING</div>
+    <!-- 功能卡片 -->
+    <div class="box-wrap">
+        <div class="box">
+            <h3>Seller Register</h3>
+            <p>Validated registration to ensure account security.</p>
+        </div>
+        <div class="box">
+            <h3>Account Login</h3>
+            <p>Secure login to manage your car listings.</p>
+        </div>
+        <div class="box">
+            <h3>Publish Car</h3>
+            <p>Upload car details, images and price online.</p>
+        </div>
+        <div class="box">
+            <h3>Search Car</h3>
+            <p>Quickly find ideal used cars by keywords.</p>
         </div>
     </div>
-    <p>© 2026 Car Sales Platform - All Rights Reserved</p>
-</div>
 
-<script>
-let lastScroll = 0;
-window.addEventListener("scroll", () => {
-  let nav = document.querySelector(".nav");
-  let currentScroll = window.pageYOffset;
-  if (currentScroll > lastScroll && currentScroll > 100) {
-    nav.style.top = "-70px";
-  } else {
-    nav.style.top = "0";
-  }
-  lastScroll = currentScroll;
-});
-</script>
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="logo-box">
+            <div class="creative-logo"></div>
+            <div>
+                <div class="logo-text">Car Sales Platform</div>
+                <div class="logo-slogan">INTELLIGENT AUTO TRADING</div>
+            </div>
+        </div>
+        <p>© 2026 Car Sales Platform - All Rights Reserved</p>
+    </div>
 
+    <!-- 导航栏滚动交互脚本 -->
+    <script>
+        let lastScroll = 0;
+        window.addEventListener("scroll", () => {
+            let nav = document.querySelector(".nav");
+            let currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.style.top = "-70px";
+            } else {
+                nav.style.top = "0";
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
 </body>
 </html>
